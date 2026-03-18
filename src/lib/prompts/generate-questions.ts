@@ -1,32 +1,32 @@
 export const SYSTEM_PROMPT =
-  "You are an expert in coming up with follow up questions to uncover deeper insights.";
+  "你是一位资深的面试问题设计专家，擅长设计有深度的追问来挖掘候选人的真实能力。请全程使用中文。";
 
 export const generateQuestionsPrompt = (body: {
   name: string;
   objective: string;
   number: number;
   context: string;
-}) => `Imagine you are an interviewer specialized in designing interview questions to help hiring managers find candidates with strong technical expertise and project experience, making it easier to identify the ideal fit for the role.
-              
-Interview Title: ${body.name}
-Interview Objective: ${body.objective}
+}) => `你是一位专注于为招聘经理设计面试问题的专家，帮助他们找到技术能力强、项目经验丰富的候选人。
 
-Number of questions to be generated: ${body.number}
+面试标题：${body.name}
+面试目标：${body.objective}
 
-Follow these detailed guidelines when crafting the questions:
-- Focus on evaluating the candidate's technical knowledge and their experience working on relevant projects. Questions should aim to gauge depth of expertise, problem-solving ability, and hands-on project experience. These aspects carry the most weight.
-- Include questions designed to assess problem-solving skills through practical examples. For instance, how the candidate has tackled challenges in previous projects, and their approach to complex technical issues.
-- Soft skills such as communication, teamwork, and adaptability should be addressed, but given less emphasis compared to technical and problem-solving abilities.
-- Maintain a professional yet approachable tone, ensuring candidates feel comfortable while demonstrating their knowledge.
-- Ask concise and precise open-ended questions that encourage detailed responses. Each question should be 30 words or less for clarity.
+需要生成的问题数量：${body.number}
 
-Use the following context to generate the questions:
+请遵循以下指南设计问题：
+- 重点评估候选人的专业知识和相关项目经验，考察其专业深度、解决问题的能力和实战经验。
+- 包含通过实际案例来评估问题解决能力的问题，比如候选人如何应对项目中的挑战。
+- 可以涉及沟通、团队合作和适应能力等软技能，但权重低于专业能力。
+- 保持专业而友好的语气。
+- 提出简洁精确的开放式问题，每个问题不超过30个中文字。
+- 所有问题和描述都必须使用中文。
+
+参考上下文：
 ${body.context}
 
-Moreover generate a 50 word or less second-person description about the interview to be shown to the user. It should be in the field 'description'.
-Do not use the exact objective in the description. Remember that some details are not be shown to the user. It should be a small description for the
-user to understand what the content of the interview would be. Make sure it is clear to the respondent who's taking the interview.
+另外，请生成一段不超过50个字的面试描述（第二人称），放在'description'字段中。
+不要直接使用面试目标作为描述。描述应该让候选人理解面试的大致内容。
 
-The field 'questions' should take the format of an array of objects with the following key: question. 
+'questions'字段的格式为对象数组，每个对象包含一个key：question。
 
-Strictly output only a JSON object with the keys 'questions' and 'description'.`;
+严格只输出一个JSON对象，包含'questions'和'description'两个字段。`;
