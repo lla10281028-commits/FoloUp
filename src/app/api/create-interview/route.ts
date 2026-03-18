@@ -15,12 +15,7 @@ export async function POST(req: Request) {
 
     const payload = body.interviewData;
 
-    let readableSlug = null;
-    if (body.organizationName) {
-      const interviewNameSlug = payload.name?.toLowerCase().replace(/\s/g, "-");
-      const orgNameSlug = body.organizationName?.toLowerCase().replace(/\s/g, "-");
-      readableSlug = `${orgNameSlug}-${interviewNameSlug}`;
-    }
+    const readableSlug = url_id;
 
     const newInterview = await InterviewService.createInterview({
       ...payload,
