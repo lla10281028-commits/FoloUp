@@ -65,8 +65,6 @@ function DetailsPopup({
   };
 
   const onGenrateQuestions = async () => {
-    setLoading(true);
-
     const data = {
       name: name.trim(),
       objective: objective.trim(),
@@ -74,28 +72,33 @@ function DetailsPopup({
       context: uploadedDocumentContext,
     };
 
-    const generatedQuestions = (await axios.post("/api/generate-interview-questions", data)) as any;
+    try {
+      const generatedQuestions = (await axios.post("/api/generate-interview-questions", data)) as any;
+      const generatedQuestionsResponse = JSON.parse(generatedQuestions?.data?.response);
 
-    const generatedQuestionsResponse = JSON.parse(generatedQuestions?.data?.response);
+      const updatedQuestions = generatedQuestionsResponse.questions.map((question: Question) => ({
+        id: uuidv4(),
+        question: question.question.trim(),
+        follow_up_count: 1,
+      }));
 
-    const updatedQuestions = generatedQuestionsResponse.questions.map((question: Question) => ({
-      id: uuidv4(),
-      question: question.question.trim(),
-      follow_up_count: 1,
-    }));
-
-    const updatedInterviewData = {
-      ...interviewData,
-      name: name.trim(),
-      objective: objective.trim(),
-      questions: updatedQuestions,
-      interviewer_id: selectedInterviewer,
-      question_count: Number(numQuestions),
-      time_duration: duration,
-      description: generatedQuestionsResponse.description,
-      is_anonymous: isAnonymous,
-    };
-    setInterviewData(updatedInterviewData);
+      const updatedInterviewData = {
+        ...interviewData,
+        name: name.trim(),
+        objective: objective.trim(),
+        questions: updatedQuestions,
+        interviewer_id: selectedInterviewer,
+        question_count: Number(numQuestions),
+        time_duration: duration,
+        description: generatedQuestionsResponse.description,
+        is_anonymous: isAnonymous,
+      };
+      setInterviewData(updatedInterviewData);
+      setLoading(true);
+    } catch (error) {
+      console.error("Error generating questions:", error);
+      setLoading(false);
+    }
   };
 
   const onManual = () => {
