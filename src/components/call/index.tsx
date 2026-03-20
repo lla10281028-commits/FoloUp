@@ -82,15 +82,15 @@ function Call({ interview }: InterviewProps) {
       });
 
       if (result) {
-        toast.success("Thank you for your feedback!");
+        toast.success("感谢您的反馈！");
         setIsFeedbackSubmitted(true);
         setIsDialogOpen(false);
       } else {
-        toast.error("Failed to submit feedback. Please try again.");
+        toast.error("反馈提交失败，请重试。");
       }
     } catch (error) {
       console.error("Error submitting feedback:", error);
-      toast.error("An error occurred. Please try again later.");
+      toast.error("发生错误，请稍后重试。");
     }
   };
 
@@ -294,11 +294,11 @@ function Call({ interview }: InterviewProps) {
                     style={{ color: interview.theme_color }}
                   />
                   <div className="text-sm font-normal">
-                    Expected duration:{" "}
+                    预计时长：{" "}
                     <span className="font-bold" style={{ color: interview.theme_color }}>
                       {interviewTimeDuration} mins{" "}
                     </span>
-                    or less
+                    以内
                   </div>
                 </div>
               )}
@@ -320,9 +320,9 @@ function Call({ interview }: InterviewProps) {
                   <div className="p-2 font-normal text-sm mb-4 whitespace-pre-line">
                     {interview?.description}
                     <p className="font-bold text-sm">
-                      {"\n"}Ensure your volume is up and grant microphone access when prompted.
-                      Additionally, please make sure you are in a quiet environment.
-                      {"\n\n"}Note: Tab switching will be recorded.
+                      {"\n"}请确保音量已开启，并在提示时授权麦克风访问。
+                      请在安静的环境中进行面试。
+                      {"\n\n"}注意：切换标签页的行为将被记录。
                     </p>
                   </div>
                   {!interview?.is_anonymous && (
@@ -331,7 +331,7 @@ function Call({ interview }: InterviewProps) {
                         <input
                           value={email}
                           className="h-fit mx-auto py-2 border-2 rounded-md w-[75%] self-center px-2 border-gray-400 text-sm font-normal"
-                          placeholder="Enter your email address"
+                          placeholder="请输入您的邮箱地址"
                           onChange={(e) => setEmail(e.target.value)}
                         />
                       </div>
@@ -339,7 +339,7 @@ function Call({ interview }: InterviewProps) {
                         <input
                           value={name}
                           className="h-fit mb-4 mx-auto py-2 border-2 rounded-md w-[75%] self-center px-2 border-gray-400 text-sm font-normal"
-                          placeholder="Enter your first name"
+                          placeholder="请输入您的姓名"
                           onChange={(e) => setName(e.target.value)}
                         />
                       </div>
@@ -356,7 +356,7 @@ function Call({ interview }: InterviewProps) {
                     disabled={Loading || (!interview?.is_anonymous && (!isValidEmail || !name))}
                     onClick={startConversation}
                   >
-                    {!Loading ? "Start Interview" : <MiniLoader />}
+                    {!Loading ? "开始面试" : <MiniLoader />}
                   </Button>
                   <AlertDialog>
                     <AlertDialogTrigger>
@@ -370,10 +370,10 @@ function Call({ interview }: InterviewProps) {
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>
-                        <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                        <AlertDialogTitle>确定要退出吗？</AlertDialogTitle>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogCancel>取消</AlertDialogCancel>
                         <AlertDialogAction
                           className="bg-indigo-600 hover:bg-indigo-800"
                           onClick={async () => {
@@ -411,7 +411,7 @@ function Call({ interview }: InterviewProps) {
                             : ""
                         }`}
                       />
-                      <div className="font-semibold">Interviewer</div>
+                      <div className="font-semibold">面试官</div>
                     </div>
                   </div>
                 </div>
@@ -437,7 +437,7 @@ function Call({ interview }: InterviewProps) {
                           : ""
                       }`}
                     />
-                    <div className="font-semibold">You</div>
+                    <div className="font-semibold">你</div>
                   </div>
                 </div>
               </div>
@@ -450,19 +450,19 @@ function Call({ interview }: InterviewProps) {
                       className=" bg-white text-black border  border-indigo-600 h-10 mx-auto flex flex-row justify-center mb-8"
                       disabled={Loading}
                     >
-                      End Interview{" "}
+                      结束面试{" "}
                       <XCircleIcon className="h-[1.5rem] ml-2 w-[1.5rem] rotate-0 scale-100  dark:-rotate-90 dark:scale-0 text-red" />
                     </Button>
                   </AlertDialogTrigger>
                   <AlertDialogContent>
                     <AlertDialogHeader>
-                      <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                      <AlertDialogTitle>确定要退出吗？</AlertDialogTitle>
                       <AlertDialogDescription>
-                        This action cannot be undone. This action will end the call.
+                        此操作无法撤销，面试将立即结束。
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogCancel>取消</AlertDialogCancel>
                       <AlertDialogAction
                         className="bg-indigo-600 hover:bg-indigo-800"
                         onClick={async () => {
@@ -484,12 +484,12 @@ function Call({ interview }: InterviewProps) {
                     <CheckCircleIcon className="h-[2rem] w-[2rem] mx-auto my-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-indigo-500 " />
                     <p className="text-lg font-semibold text-center">
                       {isStarted
-                        ? "Thank you for taking the time to participate in this interview"
-                        : "Thank you very much for considering."}
+                        ? "感谢您参加本次面试"
+                        : "感谢您的参与。"}
                     </p>
                     <p className="text-center">
                       {"\n"}
-                      You can close this tab now.
+                      您现在可以关闭此页面。
                     </p>
                   </div>
 
@@ -500,7 +500,7 @@ function Call({ interview }: InterviewProps) {
                           className="bg-indigo-600 text-white h-10 mt-4 mb-4"
                           onClick={() => setIsDialogOpen(true)}
                         >
-                          Provide Feedback
+                          提供反馈
                         </Button>
                       </AlertDialogTrigger>
                       <AlertDialogContent>
@@ -517,12 +517,12 @@ function Call({ interview }: InterviewProps) {
                   <div className="p-2 font-normal text-base mb-4 whitespace-pre-line">
                     <CheckCircleIcon className="h-[2rem] w-[2rem] mx-auto my-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-indigo-500 " />
                     <p className="text-lg font-semibold text-center">
-                      You have already responded in this interview or you are not eligible to
-                      respond. Thank you!
+                      您已经参加过本次面试或不符合参加条件。
+                      感谢您！
                     </p>
                     <p className="text-center">
                       {"\n"}
-                      You can close this tab now.
+                      您现在可以关闭此页面。
                     </p>
                   </div>
                 </div>
@@ -537,7 +537,7 @@ function Call({ interview }: InterviewProps) {
           rel="noreferrer"
         >
           <div className="text-center text-md font-semibold mr-2  ">
-            Powered by{" "}
+            技术支持：{" "}
             <span className="font-bold">
               Folo<span className="text-indigo-600">Up</span>
             </span>
