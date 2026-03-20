@@ -35,7 +35,7 @@ function PopupLoader() {
         rel="noopener noreferrer"
       >
         <div className="text-center text-md font-semibold mr-2">
-          Powered by{" "}
+          技术支持：{" "}
           <span className="font-bold">
             Folo<span className="text-indigo-600">Up</span>
           </span>
@@ -63,7 +63,7 @@ function PopUpMessage({ title, description, image }: PopupProps) {
         rel="noopener noreferrer"
       >
         <div className="text-center text-md font-semibold mr-2">
-          Powered by{" "}
+          技术支持：{" "}
           <span className="font-bold">
             Folo<span className="text-indigo-600">Up</span>
           </span>
@@ -111,8 +111,8 @@ function InterviewInterface({ params }: Props) {
         {!interview ? (
           interviewNotFound ? (
             <PopUpMessage
-              title="Invalid URL"
-              description="The interview link you're trying to access is invalid. Please check the URL and try again."
+              title="链接无效"
+              description="您访问的面试链接无效，请检查链接后重试。"
               image="/invalid-url.png"
             />
           ) : (
@@ -120,8 +120,8 @@ function InterviewInterface({ params }: Props) {
           )
         ) : !isActive ? (
           <PopUpMessage
-            title="Interview Is Unavailable"
-            description="We are not currently accepting responses. Please contact the sender for more information."
+            title="面试暂不可用"
+            description="当前暂不接受面试，请联系发送者了解更多信息。"
             image="/closed.png"
           />
         ) : (
@@ -132,11 +132,11 @@ function InterviewInterface({ params }: Props) {
         <div className="mt-48 px-3">
           <p className="text-center my-5 text-md font-semibold">{interview?.name}</p>
           <p className="text-center text-gray-600 my-5">
-            Please use a PC to respond to the interview. Apologies for any inconvenience caused.{" "}
+            请使用电脑参加面试，给您带来不便敬请谅解。{" "}
           </p>
         </div>
         <div className="text-center text-md font-semibold mr-2 my-5">
-          Powered by{" "}
+          技术支持：{" "}
           <a className="font-bold underline" href="www.folo-up.co" target="_blank" rel="noreferrer">
             Folo<span className="text-indigo-600">Up</span>
           </a>
