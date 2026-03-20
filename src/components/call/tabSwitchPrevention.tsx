@@ -44,7 +44,7 @@ function TabSwitchWarning() {
         <AlertDialogHeader>
           <AlertDialogTitle>Warning: Tab Switching</AlertDialogTitle>
           <AlertDialogDescription>
-            Switching tabs may degrade your interview performance. Tab switching is tracked.
+            切换标签页可能影响您的面试表现，切换行为将被记录。
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
